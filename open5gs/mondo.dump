@@ -1,0 +1,115 @@
+Current Mongosh Log ID:	6515f5e8ea7e5cd98810e9cc
+Connecting to:		mongodb://localhost:27019/open5gs?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.1
+Using MongoDB:		6.0.10
+Using Mongosh:		2.0.1
+
+For mongosh info see: [1mhttps://docs.mongodb.com/mongodb-shell/[0m
+
+------
+   The server generated these startup warnings when booting
+   2023-09-28T15:57:07.922-03:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2023-09-28T15:57:08.224-03:00: vm.max_map_count is too low
+------
+
+[
+  {
+    _id: ObjectId("64b9a4c57db053c5dd94817a"),
+    schema_version: 1,
+    imsi: '001010123456780',
+    msisdn: [],
+    imeisv: '3534900698733153',
+    mme_host: [],
+    mme_realm: [],
+    purge_flag: [],
+    security: {
+      k: '00112233445566778899aabbccddeeff',
+      op: null,
+      opc: '63BFA50EE6523365FF14C1F45F88737D',
+      amf: '8000',
+      sqn: Long("1472")
+    },
+    ambr: { downlink: { value: 1, unit: 3 }, uplink: { value: 1, unit: 3 } },
+    slice: [
+      {
+        sst: 1,
+        default_indicator: true,
+        session: [
+          {
+            name: 'srsapn',
+            type: 1,
+            qos: {
+              index: 9,
+              arp: {
+                priority_level: 8,
+                pre_emption_capability: 1,
+                pre_emption_vulnerability: 1
+              }
+            },
+            ambr: {
+              downlink: { value: 1, unit: 3 },
+              uplink: { value: 1, unit: 3 }
+            },
+            pcc_rule: [],
+            _id: ObjectId("64b9a4c57db053c5dd94817c")
+          }
+        ],
+        _id: ObjectId("64b9a4c57db053c5dd94817b")
+      }
+    ],
+    access_restriction_data: 32,
+    subscriber_status: 0,
+    network_access_mode: 0,
+    subscribed_rau_tau_timer: 12,
+    __v: 0
+  },
+  {
+    _id: ObjectId("64d3f719f6e2c4c91098e172"),
+    schema_version: 1,
+    imsi: '901700000028080',
+    msisdn: [],
+    imeisv: '3524298971938501',
+    mme_host: [],
+    mme_realm: [],
+    purge_flag: [],
+    security: {
+      k: '724d0f31f2259622700437430b7b5c6e',
+      op: null,
+      opc: '1140620b2805d84b44643bfcfbe6218c',
+      amf: '8000',
+      sqn: Long("2660801")
+    },
+    ambr: { downlink: { value: 1, unit: 3 }, uplink: { value: 1, unit: 3 } },
+    slice: [
+      {
+        sst: 1,
+        default_indicator: true,
+        session: [
+          {
+            name: 'srsapn',
+            type: 1,
+            qos: {
+              index: 9,
+              arp: {
+                priority_level: 8,
+                pre_emption_capability: 1,
+                pre_emption_vulnerability: 1
+              }
+            },
+            ambr: {
+              downlink: { value: 1, unit: 3 },
+              uplink: { value: 1, unit: 3 }
+            },
+            pcc_rule: [],
+            _id: ObjectId("64d3f719f6e2c4c91098e174")
+          }
+        ],
+        _id: ObjectId("64d3f719f6e2c4c91098e173")
+      }
+    ],
+    access_restriction_data: 32,
+    subscriber_status: 0,
+    network_access_mode: 0,
+    subscribed_rau_tau_timer: 12,
+    __v: 0
+  }
+]
