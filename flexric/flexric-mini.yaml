@@ -1,0 +1,24 @@
+services:
+  ric:
+    image: "flexric-mini"
+    command: "/flexric/nearRT-RIC -p /flexric/flexric/" # -c /flexric/flexric.conf"
+    container_name: "nearrt-ric"
+    network_mode: "host"
+      # These ports need to be mapped if running the ric inside a docker network
+      # in that case the ric will need to grab an ip from the flexric.conf file
+      #ports:
+      # - "36421:36421/sctp"
+      # - "36422:36422/sctp"
+      #volumes:
+      # - "./flexric-ric.conf:/flexric/flexric.conf"
+  xapp-kpm:
+    image: "flexric-mini"
+    command: "/flexric/xapp_kpm_moni -p /flexric/flexric/ -c /flexric/flexric.conf"
+    container_name: "xapp_kpm_moni"
+    volumes:
+      - "./flexric.conf:/flexric/flexric.conf"
+  xapp-rc:
+    image: "flexric-mini"
+    command: "/flexric/xapp_slice_moni_ctrl -p /flexric/flexric/"
+    container_name: "xapp_slice_moni_ctrl"
+    network_mode: "host"

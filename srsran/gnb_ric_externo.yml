@@ -1,0 +1,41 @@
+amf:
+  addr: 191.4.204.117                # The address or hostname of the AMF.
+  port: 38412
+  bind_addr: 191.4.204.136         # A local IP that the gNB binds to for traffic from the AMF.
+
+ru_sdr:
+  device_driver: uhd                                            # The RF driver name.
+  device_args: type=b200,ref_locked=internal,clock=internal,pps=internal
+    #clock: external                                               # Specify the clock source used by the RF.
+    #sync: internal                                                # Specify the sync source used by the RF.
+  srate: 23.04                                                  # RF sample rate might need to be adjusted according to selected bandwidth.
+  tx_gain: 70                                                   # Transmit gain of the RF might need to adjusted to the given situation.
+    #rx_gain: 70                                                   # Receive gain of the RF might need to adjusted to the given situation.
+
+cell_cfg:
+  dl_arfcn: 368500                                                # ARFCN of the downlink carrier (center frequency).
+  band: 3                                                        # The NR band.
+  channel_bandwidth_MHz: 10                                     # Bandwith in MHz. Number of PRBs will be automatically derived.
+  common_scs: 15                                                  # Subcarrier spacing in kHz used for data.
+  plmn: "00101"                                                   # PLMN broadcasted by the gNB.
+  tac: 2                                                          # Tracking area code (needs to match the core configuration).
+
+log:
+  filename: /tmp/gnb.log                                   # Path of the log file.
+  all_level: info
+
+pcap:
+  mac_enable: true                                                # Set to true to enable MAC-layer PCAPs.
+  mac_filename: /tmp/gnb_mac.pcap                          # Path where the MAC PCAP is stored.
+  ngap_enable: true                                               # Set to true to enable NGAP PCAPs.
+  ngap_filename: /tmp/gnb_ngap.pcap                        # Path where the NGAP PCAP is stored.
+  e2ap_enable: true                 # Set to true to enable E2AP PCAPs.
+  e2ap_filename: /tmp/gnb_e2ap.pcap # Path where the E2AP PCAP is stored.
+
+e2:
+  enable_du_e2: true                # Enable DU E2 agent (one for each DU instance)
+  e2sm_kpm_enabled: true             # Enable KPM service module
+  e2sm_rc_enabled: true            # Enable KPM service module
+  addr: 127.0.0.1                   # RIC IP address
+  port: 36422                       # RIC port
+

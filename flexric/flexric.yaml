@@ -1,0 +1,11 @@
+services:
+  ric:
+    image: "flexric"
+    command: nearRT-RIC
+    container_name: "nearrt-ric"
+    network_mode: "host"
+  xapp:
+    image: "flexric"
+    command: "xapp_kpm_moni"
+    container_name: "xapp_kpm_moni"
+    network_mode: "host"

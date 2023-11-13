@@ -1,0 +1,28 @@
+FROM ubuntu:22.04 as apted
+
+RUN apt-get update && apt-get install -y wget cmake swig libsctp-dev cmake-curses-gui libpcre2-dev python3 python3-dev build-essential gcc-10 git
+
+FROM apted as gited
+
+RUN git clone --depth 1 -b e2ap-v2 https://gitlab.eurecom.fr/mosaic5g/flexric.git 
+
+COPY ./flexric.patch /flexric/
+
+RUN cd flexric && git apply -v ./flexric.patch
+
+FROM gited as build
+
+RUN cd flexric && mkdir build && cd build && CC=gcc-10 cmake ../ -DBUILDING_LIBRARY=STATIC -DCMAKE_BUILD_TYPE=Release && make -j 8 && make install
+
+FROM busybox:glibc as final
+
+RUN mkdir flexric
+COPY --from=apted /usr/lib/x86_64-linux-gnu/libsctp* /lib/
+COPY --from=apted /usr/share/doc/libsctp1/* /lib/
+COPY --from=build /usr/local/lib /flexric/
+COPY --from=build /flexric/build/examples/ric/nearRT-RIC /flexric/
+COPY --from=build /flexric/build/examples/xApp/c/monitor/xapp_kpm_moni /flexric/
+COPY --from=build /flexric/build/examples/xApp/c/slice/xapp_slice_moni_ctrl /flexric/
+COPY --from=build /usr/local/etc/flexric/flexric.conf /usr/local/etc/flexric/flexric.conf
+
+CMD ["sleep 3600"]
